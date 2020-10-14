@@ -20,23 +20,22 @@ namespace Websocket_Server
         public static int i = 0;
         protected override void OnOpen()
         {
-            int j = 1;
+
             foreach (string h in history)
             {
-                Sessions.SendTo(ID, h + " " + j);
-                j++;
+                Sessions.SendTo(ID, h);
             }
         }
 
         protected override void OnMessage(MessageEventArgs e)
         {
             // Retrieve message from client
-            string msg = e.Data;
-            history.Add(e.Data);
+            string msg = e.Data + " " + DateTime.Now.ToString();
+            history.Add(e.Data + " " +  DateTime.Now.ToString());
             i++;
 
             // Broadcast message to all clients
-            Sessions.Broadcast(msg + " " + i);
+            Sessions.Broadcast(msg);
         }
     }
 }
