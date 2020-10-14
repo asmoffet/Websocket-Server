@@ -20,12 +20,10 @@ namespace Websocket_Server
         public static int i = 0;
         protected override void OnOpen()
         {
-            string[] IDs = Sessions.ActiveIDs.ToArray();
-            Console.WriteLine(history.Count);
             int j = 1;
             foreach (string h in history)
             {
-                Sessions.SendTo(IDs[IDs.Length - 1], h + " " + j);
+                Sessions.SendTo(ID, h + " " + j);
                 j++;
             }
         }
