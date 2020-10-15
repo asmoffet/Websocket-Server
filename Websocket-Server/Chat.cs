@@ -23,7 +23,7 @@ namespace Websocket_Server
 
             foreach (string h in history)
             {
-                Sessions.SendTo(ID, h);
+                Send(h);
             }
         }
 
